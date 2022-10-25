@@ -64,4 +64,4 @@ else{
 }
 }
 
-alert("el monto final de tu compra es" + (compraTotal))
+alert("el monto final de tu compra es " + (compraTotal))

@@ -1,0 +1,58 @@
+.guachin{background-color: rgb(255, 255, 255); padding-left: 15px;}
+.negro{background-color: rgb(255, 255, 255); height: 50px;}
+.sin_padding{padding: 0px; margin: 0px;}
+.barra_lateral{ background-color: blueviolet;}
+.tarjeta_uno{ background-color: crimson;}
+.tarjeta_dos{ background-color: darkgreen;}
+.tarjeta_tres{ background-color: fuchsia;}
+h1{height: 600px;}
+.footer_uno{background-color: lightgreen; height: 50px;}
+.footer_dos{background-color: darkseagreen; height: 50px;}
+h2{padding: 0px; height: 50px;}
+.logo_header{width: 85px; height: 55px; padding-left: 20px;}
+.barra_nav{display: flex;
+justify-content: center;
+justify-items: center;}
+
+.barra_header{display: flex;
+    justify-content: center;
+    justify-items: center;}
+
+
+.nav_links{display: flex;
+    align-content: space-around;
+    padding-left: 10px;
+    padding-right: 10px;
+font-size: 20px;
+text-decoration: solid;
+text-decoration: underline;}
+
+@media screen and (min-width: 992px) {
+    .header{background-color: rgb(162, 162, 42);}
+    .barra_header{display: flex;
+        justify-content: start;
+        justify-items: start;}
+        
+
+}
+
+
+@media screen and (max-width: 991px){
+    .header{background-color: rgb(162, 162, 42);}
+    .logo_header{width: 185px; height: 155px; }
+    .guachin{font-size: 55px;}
+    .barra_nav{padding-top: 20px;
+    align-content: space-around;}
+.nav_links{font-size: 34px;}
+}
+
+@media screen and (max-width: 768px){
+    .logo_header{width: 115px; height: 115px; }
+    .guachin{font-size: 35px;}
+    .barra_nav{padding-top: 5px;}
+    .nav_links{font-size: 20px;}
+}
+
+@media screen and (max-width: 441px){
+    .nav_links{font-size: 16px;}
+}

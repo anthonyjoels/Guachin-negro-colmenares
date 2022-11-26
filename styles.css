@@ -1,36 +1,36 @@
-.guachin{background-color: rgb(255, 255, 255); padding-left: 15px;}
-.negro{background-color: rgb(255, 255, 255); height: 50px;}
-.sin_padding{padding: 0px; margin: 0px;}
-.barra_lateral{ background-color: rgb(255, 255, 255);}
-.tarjeta_uno{ height: 730px; background-color: rgb(255, 255, 255);}
-.tarjeta_dos{ height: 730px; background-color: rgb(255, 255, 255);}
-.tarjeta_tres{ height: 730px; background-color: rgb(255, 255, 255);}
-.bienvenido{background-color: #fff;
-text-decoration: underline;}
 
+.barra_lateral{ background-color: rgb(255, 255, 255);}
+
+.bienvenido{background-color: #fff;
+text-decoration: underline;
+text-align: center;}
+
+
+
+.tarjeta{display: flex;
+    flex-wrap: nowrap;
+    margin-top: 10px;
+width: 30%;
+height: 500px;
+margin-left:25px;
+border: 3px solid #000;}
+.tituloTarjeta{text-align: center;}
+.precioTarjeta{text-align: center;}
+.imagenTarjeta{width: 100%;}
+
+
+
+    
 h2{display: flex;
     justify-content: center;
     justify-items: center;
 background-color: #000;
 color: #fff;
 text-decoration: underline;}
-.card_imagenes{height: 500px;}
 
-.card_uno{
-margin-left: 5px;
-border-style: solid;
-border: 15px solid #000;
-border-radius: 5%;
-border-color: #000;
-margin-left: 15px;}
 
-.tarjeta{display: flex;
-    justify-content: center;
-    justify-items: center;
-border-style: solid;
-border: 15px solid #000;
-border-radius: 5%;
-border-color: #000;}
+
+
 
 .footer_uno{background-color: lightgreen; height: 50px; margin-left: 15px;}
 .footer_dos{background-color: darkseagreen; height: 50px; margin-left: -15px;}
@@ -64,7 +64,6 @@ text-decoration: underline;}
 
 }
 
-
 @media screen and (max-width: 991px){
     .header{background-color: rgb(255, 255, 255);}
     .logo_header{width: 185px; height: 155px; }
@@ -72,7 +71,26 @@ text-decoration: underline;}
     .barra_nav{padding-top: 20px;
     align-content: space-around;}
 .nav_links{font-size: 34px;}
+
 }
+
+@media screen and (max-width: 725px){
+    .tarjeta{display: flex;
+        flex-wrap: nowrap;
+        margin-top: 10px;
+    width: 43%;
+    margin-left:20px;}
+    }
+    @media screen and (max-width: 576px){
+        .tarjeta{display: flex;
+            flex-wrap: nowrap;
+            margin-top: 10px;
+        width: 90%;
+        margin-left:25px;
+
+    padding: 0%;}
+    
+        }
 
 @media screen and (max-width: 768px){
     .logo_header{width: 115px; height: 115px; }
@@ -83,4 +101,4 @@ text-decoration: underline;}
 
 @media screen and (max-width: 441px){
     .nav_links{font-size: 16px;}
-}
+} 

@@ -1,19 +1,10 @@
- function bienvenida (user){
-alert("Bienvenido " + user)
- }
- let nombre = prompt("cual es tu nombre?")
- bienvenida (nombre)
-
-
-
-
-
-class Galeria {
-    constructor (id, nombre, precio, stock){
+class producto {
+    constructor (id, nombre, precio, stock,imagen){
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.imagen = imagen;
     }
     reducirStock ()
     {this.stock  = this.stock -1;
@@ -21,104 +12,69 @@ class Galeria {
 }
 }
 
-const foto0 = new Galeria (0, "guachin_terraza", 100, 1);
-const foto1 = new Galeria (1, "negro_terraza", 110, 2);
-const foto2 = new Galeria (2, "guachin_cazando", 200, 3);
-const foto3 = new Galeria (3, "negro_cazando", 210, 4);
-const foto4 = new Galeria (4, "guachin_jugando", 300, 5);
-const foto5 = new Galeria (5, "negro_jugando", 310, 6);
-const foto6 = new Galeria (6, "guachin_durmiendo", 400, 7);
-const foto7 = new Galeria (7, "negro_durmiendo", 410, 8);
+const producto0 = new producto (0, "guachin terraza", 100, 1, "./imagenes/guachin terraza.jpg");
+const producto1 = new producto (1, "negro terraza", 110, 2, "./imagenes/negro terraza.jpg");
+const producto2 = new producto (2, "guachin cazando", 200, 3, "./imagenes/guachin cazando.jpg");
+const producto3 = new producto (3, "negro cazando", 210, 4,"./imagenes/negro cazando.jpg");
+const producto4 = new producto (4, "guachin jugando", 300, 5, "./imagenes/guachin jugando.jpg");
+const producto5 = new producto (5, "negro jugando", 310, 6, "./imagenes/negro jugando.jpg");
+const producto6 = new producto (6, "guachin durmiendo", 400, 7, "./imagenes/guachin durmiendo.jpg");
+const producto7 = new producto (7, "negro durmiendo", 410, 8, "./imagenes/negro durmiendo.jpg");
+const producto8 = new producto (8, "guachin y negro juntos", 420, 8, "./imagenes/guachin y negro.jpg");
 
-const fotos = [foto0, foto1, foto2, foto3, foto4, foto5, foto6, foto7];
 
-const carrito = []
+const productos = [producto0, producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8];
 
-let opcionesFotos =  "Que foto quieres llevar? "
 
-function sumarCarrito (){
-   for (item of fotos) {
-    opcionesFotos += `\n ${item.id}  - ${item.nombre} por solo ${item.precio} ` 
-   }
+const carrito= JSON.parse(localStorage.getItem("carrito")) ||[]
 
-   opcionesFotos += `\n Ingrese El numero de la foto que desea comprar. Para ir a pagar ingrese 100`
+
+const divProductos = document.getElementById("divProductos")
+
+
+productos.forEach(producto=>{
+    divProductos.innerHTML += `
+    <div id="${producto.id}" class="card tarjeta col-sm-12 col-md-6 col-lg-4  " >
    
-   let respuesta = parseInt (prompt(opcionesFotos))
+    <div class = "card-body" >
+    <img src="${producto.imagen}" height="70%" class="card-img-top imagenTarjeta" >
+    <h4 class="card-title tituloTarjeta">${producto.nombre}</h4>
+    
+    <p class="card-text precioTarjeta center">$ ${producto.precio}</p>
+    
+    <div class="d-grid gap-2 col-6 mx-auto">
+    <buttom id=${producto.id} class="btn btn-primary botonTarjeta" > AGREGAR</buttom>
+    </div>
 
 
-  while (isNaN(respuesta)){
-  alert ("Ingresar sólo números, por favor")
-  respuesta = parseInt (prompt(opcionesFotos))
-}
- while(respuesta !=100) {
-    switch(respuesta){
-        case 0: carrito.push (fotos[0])
-        alert(`${fotos[0].nombre} se agregó al carrito`)
-        fotos[0].reducirStock()
-        break;
+    
+    
+    </div>`
+})
 
-        case 1: carrito.push (fotos[1])
-        alert(`${fotos[1].nombre} se agregó al carrito`)
-        fotos[1].reducirStock()
-        break;
 
-        case 2: carrito.push (fotos[2])
-        alert(`${fotos[2].nombre} se agregó al carrito`)
-        fotos[2].reducirStock()
-        break;
+const botonesAgregar = document.querySelectorAll(".btn-primary")
 
-        case 3: carrito.push (fotos[3])
-        alert(`${fotos[3].nombre} se agregó al carrito`)
-        fotos[3].reducirStock()
-        break;
+botonesAgregar.forEach(boton=>{
+    boton.onclick = () => {
+        const productoSeleccionado = productos.find(prod=> prod.id===parseInt(boton.id))
 
-        case 4: carrito.push (fotos[4])
-        alert(`${fotos[4].nombre} se agregó al carrito`)
-        fotos[4].reducirStock()
-        break;
-
-        case 5: carrito.push (fotos[5])
-        alert(`${fotos[5].nombre} se agregó al carrito`)
-        fotos[5].reducirStock()
-        break;
-
-        case 6: carrito.push (fotos[6])
-        alert(`${fotos[6].nombre} se agregó al carrito`)
-        fotos[6].reducirStock()
-        break;
-
-        case 7: carrito.push (fotos[7])
-        alert(`${fotos[7].nombre} se agregó al carrito`)
-        fotos[7].reducirStock()
-        break;
-
-        default:
-            alert("el valor ingresado no es valido")
-            break
-        
+        const productoCarrito = {...productoSeleccionado,cantidad:1}
+        const indexCarrito = carrito.findIndex(prod=>prod.id === productoCarrito.id)
+        if(indexCarrito === -1){
+            carrito.push(productoCarrito)
+        } else {
+            carrito[indexCarrito].cantidad +=1
+        }
+        localStorage.setItem("carrito", JSON.stringify(carrito))
     }
-    respuesta = parseInt (prompt(opcionesFotos))
- }
- alert("Ya tenemos tu orden!")
- mostrarCarrito()
-  
-}
+})
 
-
-
-
-
-
-let fotosCarrito = "estas llevando: "
-let totalCarrito = 0
-sumarCarrito()
-
-
-
-function mostrarCarrito (){
-    for(itemsEscogidos of carrito){
-        fotosCarrito +=`\n  ${itemsEscogidos.nombre}`
-        totalCarrito += itemsEscogidos.precio
-    }
-    alert (`Vas a llevar: \n ${fotosCarrito} \n por un total de ${totalCarrito}`)
+const botonFinalizar = document.querySelector ("#finalizar")
+botonFinalizar.onclick = () => {
+    const valores = carrito.map(prod=> prod.precio * prod.cantidad)
+    let totalCompra = 0
+    valores.forEach(valor=>{
+        totalCompra += valor
+    })
 }

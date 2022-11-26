@@ -1,5 +1,5 @@
 
-.barra_lateral{ background-color: rgb(255, 255, 255);}
+
 
 .bienvenido{background-color: #fff;
 text-decoration: underline;
@@ -13,12 +13,38 @@ text-align: center;}
 width: 30%;
 height: 500px;
 margin-left:25px;
-border: 3px solid #000;}
-.tituloTarjeta{text-align: center;}
-.precioTarjeta{text-align: center;}
-.imagenTarjeta{width: 100%;}
+border: 3px solid #000;
+background-image: url("./imagenes/fondo.png") ;
+background-size: 225px;
+
+}
+.tituloTarjeta{display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+background-color: rgba(255, 255, 255, 0.852);
+margin-top: 5px;
+color: rgb(0, 0, 0);
+border-radius: 15%;
+
+font-weight: 1000;
+font-size: 25px;}
 
 
+.precioTarjeta{text-align: center;
+    background-color: rgba(255, 255, 255, 0.783);
+    margin-top: 5px;
+color: rgb(0, 0, 0);
+border-radius: 15%;
+font-size: 20px;
+font-weight: 1000;}
+
+
+.imagenTarjeta{ 
+    border-radius: 5%;
+    }
+
+.botonTarjeta{margin-top: 5px;
+    font-weight: 1000;}
 
     
 h2{display: flex;
@@ -26,16 +52,24 @@ h2{display: flex;
     justify-items: center;
 background-color: #000;
 color: #fff;
-text-decoration: underline;}
+text-decoration: underline;
+font-weight: 1000;}
+
+
+
+.finalizarCompra{
+    margin-top: 10px;
+    background-color: rgba(31, 238, 90, 0.52);
+}
 
 
 
 
 
-.footer_uno{background-color: lightgreen; height: 50px; margin-left: 15px;}
-.footer_dos{background-color: darkseagreen; height: 50px; margin-left: -15px;}
 h2{padding: 0px; height: 50px;
-color: #000;}
+color: #000;
+
+}
 .logo_header{width: 85px; height: 55px; padding-left: 20px;}
 .barra_nav{display: flex;
 justify-content: center;
@@ -44,6 +78,8 @@ justify-items: center;}
 .barra_header{display: flex;
     justify-content: center;
     justify-items: center;
+    
+    
 ;}
 
 
@@ -53,7 +89,10 @@ justify-items: center;}
     padding-right: 10px;
 font-size: 20px;
 text-decoration: solid;
-text-decoration: underline;}
+text-decoration: underline;
+font-weight: 1000;}
+
+
 
 @media screen and (min-width: 992px) {
     .header{background-color: rgb(255, 255, 255);}
@@ -63,6 +102,7 @@ text-decoration: underline;}
         
 
 }
+
 
 @media screen and (max-width: 991px){
     .header{background-color: rgb(255, 255, 255);}

@@ -88,7 +88,9 @@ botonComprar.onclick = () => {
     valores.forEach(valor=>{
         totalCompra += valor})
         console.log(totalCompra)
-        totalCompra.onclick = Swal.fire (`  El total de su compra es: ${totalCompra}`)
+        totalCompra.onclick = Swal.fire ({icon: 'success', text: `El total de su compra es: ${totalCompra}` })
+        
         
     
 }
+

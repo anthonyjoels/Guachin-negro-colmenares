@@ -57,16 +57,26 @@ productos.forEach((producto)=>{
 
 
 
+
+
+
+
+
+
 const carrito= JSON.parse(localStorage.getItem("carrito")) ||[]
 
 const botonesAgregar = document.querySelectorAll(".botonTarjeta")
 
+
 botonesAgregar.forEach(boton=>{
-    boton.onclick = () => {
+    boton.onclick = () => {  
+    
         const productoSeleccionado = productos.find(prod=> prod.id===parseInt(boton.id))
 
         const productoCarrito = {...productoSeleccionado,cantidad:1}
+        Swal.fire ({icon: 'success', text: `Agregaste este producto al carrito, ${productoCarrito.nombre} con un costo de ${productoCarrito.precio}` })
 
+       
         const indexCarrito = carrito.findIndex(prod=>prod.id === productoCarrito.id)
         if(indexCarrito === -1){
             carrito.push(productoCarrito)
@@ -77,8 +87,12 @@ botonesAgregar.forEach(boton=>{
         }
         localStorage.setItem("carrito", JSON.stringify(carrito))
         console.log(carrito)
+        
     }
+    
 })
+
+
 
 const botonComprar = document.getElementById("comprar")
 botonComprar.onclick = () => {

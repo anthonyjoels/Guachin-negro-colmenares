@@ -43,13 +43,13 @@ productos.forEach((producto)=>{
     </div>
 
 
-    <div class="d-grid gap-2 col-6 mx-auto">
+    <div class="col botones">
     <buttom id=${producto.id} class="btn btn-primary botonTarjeta" > AGREGAR</buttom>
+    <buttom id=${producto.id} class="btn btn-primary botonTarjetaBorrar" > ELIMINAR</buttom>
+   
+   
     </div>
-
-
-    
-    
+  
     </div>`
 })
 
@@ -94,6 +94,44 @@ botonesAgregar.forEach(boton=>{
 
 
 
+const botonesBorrar = document.querySelectorAll(".botonTarjetaBorrar")
+
+
+botonesBorrar.forEach(boton=>{
+    boton.onclick = () => {  
+    
+        const productoSeleccionado = productos.find(prod=> prod.id===parseInt(boton.id))
+
+        const productoCarrito = {...productoSeleccionado,cantidad:-1}
+        Swal.fire ({icon: 'error', text: `Eliminaste este Producto, ${productoCarrito.nombre} con un costo de ${productoCarrito.precio}` })
+
+       
+        const indexCarrito = carrito.findIndex(prod=>prod.id === productoCarrito.id)
+        if(indexCarrito === -1){
+            indexCarrito= 0
+            
+        } 
+        else {
+            carrito[indexCarrito].cantidad -= 1
+        }
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+        console.log(carrito)
+        
+    }
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
 const botonComprar = document.getElementById("comprar")
 botonComprar.onclick = () => {
     const valores = carrito.map(prod=> prod.precio * prod.cantidad)
@@ -107,4 +145,28 @@ botonComprar.onclick = () => {
         
     
 }
+
+
+
+
+
+
+const divDolar = document.getElementById("DivDolar")
+
+const cargarDolar = () => {
+    fetch ("https://criptoya.com/api/dolar")
+    .then (response => response.json())
+    .then (({solidario, ccl, mep, ccb, blue}) => {
+        divDolar.innerHTML = `
+      
+        <p> Cotizaciones del Dolar:  Solidario : $${solidario}, Blue : $${blue}, CCL : $${ccl}, Mep : $${mep}, CCB : $${ccb} </p>
+        `
+    })
+}
+
+cargarDolar()
+
+setInterval(()=> {
+    cargarDolar()
+},60000);
 

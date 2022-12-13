@@ -58,7 +58,7 @@ font-weight: 1000;}
 
 
 .finalizarCompra{
-    margin-top: 10px;
+   
     background-color: rgba(31, 238, 90, 0.52);
     margin-top: 15px;
 }
@@ -106,10 +106,14 @@ text-align: center;
 font-weight: 700;
 padding-top: 3%;}
 
-.vaciarCarrito{background-color: rgb(145, 142, 142);
+.vaciarCarrito{display: flex;
+    flex-wrap: nowrap;
+    background-color: rgb(145, 142, 142);
     border-color: #000;
     color: #fff;
-    margin-top: 15px;}
+    margin-top: 15px;
+text-align: center;
+justify-content: center;}
 
 
 

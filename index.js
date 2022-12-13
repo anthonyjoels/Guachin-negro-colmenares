@@ -102,11 +102,11 @@ botonesBorrar.forEach(boton=>{
     
         const productoSeleccionado = productos.find(prod=> prod.id===parseInt(boton.id))
 
-        const productoCarrito = {...productoSeleccionado,cantidad:-1}
+        let productoCarrito = {...productoSeleccionado,cantidad:-1}
         Swal.fire ({icon: 'error', text: `Eliminaste este Producto, ${productoCarrito.nombre} con un costo de ${productoCarrito.precio}` })
 
        
-        const indexCarrito = carrito.findIndex(prod=>prod.id === productoCarrito.id)
+        let indexCarrito = carrito.findIndex(prod=>prod.id === productoCarrito.id)
         if(indexCarrito === -1){
             indexCarrito= 0
             
@@ -117,6 +117,9 @@ botonesBorrar.forEach(boton=>{
         localStorage.setItem("carrito", JSON.stringify(carrito))
         console.log(carrito)
         
+        
+
+        
     }
     
 })
@@ -124,8 +127,9 @@ botonesBorrar.forEach(boton=>{
 
 
 
-
-
+const botonVaciar = document.getElementById("vaciar")
+botonVaciar.onclick = () =>  {localStorage.clear();
+    Swal.fire ({icon: 'success', text: `El carrito a sido vaciado exitosamente, por favor actualizar la pagina para guardar cambios! ` })} 
 
 
 
@@ -133,18 +137,22 @@ botonesBorrar.forEach(boton=>{
 
 
 const botonComprar = document.getElementById("comprar")
-botonComprar.onclick = () => {
-    const valores = carrito.map(prod=> prod.precio * prod.cantidad)
+botonComprar.onclick = () =>  { 
+    let valores = carrito.map(prod=> prod.precio * prod.cantidad )
     
     let totalCompra = 0
     valores.forEach(valor=>{
         totalCompra += valor})
         console.log(totalCompra)
-        totalCompra.onclick = Swal.fire ({icon: 'success', text: `El total de su compra es: ${totalCompra}` })
+        totalCompra.onclick = Swal.fire ({icon: 'success', text: `El total de su compra es: ${totalCompra} `  })
+
+        totalCompra = 0
         
+
         
     
 }
+
 
 
 
@@ -169,4 +177,6 @@ cargarDolar()
 setInterval(()=> {
     cargarDolar()
 },60000);
+
+
 

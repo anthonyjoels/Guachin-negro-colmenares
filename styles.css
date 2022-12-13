@@ -145,7 +145,7 @@ justify-content: center;}
         margin-top: 10px;
     width: 43%;
     margin-left:20px;}
-    .vaciarCarrito{margin-left: -10px;}
+    
     }
     @media screen and (max-width: 576px){
         .tarjeta{display: flex;
@@ -155,7 +155,7 @@ justify-content: center;}
         margin-left:25px;
 
     padding: 0%;}
-    
+    .vaciarCarrito{margin-left: -10px;}
         }
 
 @media screen and (max-width: 768px){

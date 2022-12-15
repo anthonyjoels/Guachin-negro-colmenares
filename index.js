@@ -86,7 +86,7 @@ botonesAgregar.forEach(boton=>{
             carrito[indexCarrito].cantidad += 1
         }
         localStorage.setItem("carrito", JSON.stringify(carrito))
-        console.log(carrito)
+        
         
     }
     
@@ -100,28 +100,25 @@ const botonesBorrar = document.querySelectorAll(".botonTarjetaBorrar")
 botonesBorrar.forEach(boton=>{
     boton.onclick = () => {  
     
-        const productoSeleccionado = productos.find(prod=> prod.id===parseInt(boton.id))
-
-        let productoCarrito = {...productoSeleccionado,cantidad:-1}
-        Swal.fire ({icon: 'error', text: `Eliminaste este Producto, ${productoCarrito.nombre} con un costo de ${productoCarrito.precio}` })
-
-       
-        let indexCarrito = carrito.findIndex(prod=>prod.id === productoCarrito.id)
-        if(indexCarrito === -1){
-            indexCarrito= 0
-            
-        } 
-        else {
-            carrito[indexCarrito].cantidad -= 1
-        }
-        localStorage.setItem("carrito", JSON.stringify(carrito))
-        console.log(carrito)
-        
-        
-
-        
-    }
     
+            const productoSeleccionado = productos.find(prod=> prod.id===parseInt(boton.id))
+    
+            const productoCarrito = {...productoSeleccionado,cantidad:1}
+            Swal.fire ({icon: 'success', text: `eliminaste este producto al carrito, ${productoCarrito.nombre} con un costo de ${productoCarrito.precio}` })
+    
+           
+            const indexCarrito = carrito.findIndex(prod=>prod.id === productoCarrito.id)
+            if(indexCarrito === 1){
+                carrito.push(productoCarrito)
+                
+            } 
+            else {
+                carrito[indexCarrito].cantidad -= 1
+            }
+            localStorage.setItem("carrito", JSON.stringify(carrito))
+            
+            
+        }
 })
 
 
@@ -139,14 +136,16 @@ botonVaciar.onclick = () =>  {localStorage.clear();
 const botonComprar = document.getElementById("comprar")
 botonComprar.onclick = () =>  { 
     let valores = carrito.map(prod=> prod.precio * prod.cantidad )
+    let nombres = carrito.map(prod=> prod.nombre )
+
+
     
     let totalCompra = 0
     valores.forEach(valor=>{
         totalCompra += valor})
-        console.log(totalCompra)
-        totalCompra.onclick = Swal.fire ({icon: 'success', text: `El total de su compra es: ${totalCompra} `  })
+        totalCompra.onclick = Swal.fire ({icon: 'success', text: `El total de su compra es: ${totalCompra} y los productos que lleva son: " ${nombres} " `  })
 
-        totalCompra = 0
+        
         
 
         
